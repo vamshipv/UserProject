@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectScreenAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectStartDate" Type="date" Nullable="false" />
+          <Property Name="ProjectEndDate" Type="date" Nullable="false" />
+          <Property Name="ProjectPriority" Type="int" />
+          <Property Name="EmpId" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AddUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Function Name="CreateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectStartDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProjectEndDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProjectPriority" Type="int" Mode="In" />
+          <Parameter Name="EmpID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DisplayAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DisplayAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DisplayById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DisplayProjectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectStartDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProjectEndDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProjectPriority" Type="int" Mode="In" />
+          <Parameter Name="EmpID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateProject1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectStartDate" Type="date" Mode="In" />
+          <Parameter Name="ProjectEndDate" Type="date" Mode="In" />
+          <Parameter Name="ProjectPriority" Type="int" Mode="In" />
+          <Parameter Name="EmpID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="EmpId" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProjectScreenAppModelStoreContainer">
+          <EntitySet Name="AddProject" EntityType="Self.AddProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddUsers" EntityType="Self.AddUsers" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectScreenAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AddProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProjectStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProjectEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProjectPriority" Type="Int32" />
+          <Property Name="EmpId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AddUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ProjectScreenAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddProjects" EntityType="Self.AddProject" />
+          <EntitySet Name="AddUsers" EntityType="Self.AddUser" />
+          <FunctionImport Name="CreateProject">
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectEndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectPriority" Mode="In" Type="Int32" />
+            <Parameter Name="EmpID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateUser">
+            <Parameter Name="EmpId" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProject">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUser">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DisplayAllProjects" ReturnType="Collection(ProjectScreenAppModel.DisplayAllProjects_Result)" />
+          <FunctionImport Name="DisplayAllUsers" ReturnType="Collection(ProjectScreenAppModel.DisplayAllUsers_Result)" />
+          <FunctionImport Name="DisplayById" ReturnType="Collection(ProjectScreenAppModel.DisplayById_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DisplayProjectByID" ReturnType="Collection(ProjectScreenAppModel.DisplayProjectByID_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProject">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectEndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectPriority" Mode="In" Type="Int32" />
+            <Parameter Name="EmpID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProject1">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectEndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProjectPriority" Mode="In" Type="Int32" />
+            <Parameter Name="EmpID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUser">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="EmpId" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="DisplayAllProjects_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ProjectStartDate" Nullable="false" />
+          <Property Type="DateTime" Name="ProjectEndDate" Nullable="false" />
+          <Property Type="Int32" Name="ProjectPriority" Nullable="true" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="DisplayAllUsers_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="DisplayById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="DisplayProjectByID_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ProjectStartDate" Nullable="false" />
+          <Property Type="DateTime" Name="ProjectEndDate" Nullable="false" />
+          <Property Type="Int32" Name="ProjectPriority" Nullable="true" />
+          <Property Type="String" Name="EmpId" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectScreenAppModelStoreContainer" CdmEntityContainer="ProjectScreenAppEntities">
+          <EntitySetMapping Name="AddProjects">
+            <EntityTypeMapping TypeName="ProjectScreenAppModel.AddProject">
+              <MappingFragment StoreEntitySet="AddProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+                <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+                <ScalarProperty Name="ProjectPriority" ColumnName="ProjectPriority" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddUsers">
+            <EntityTypeMapping TypeName="ProjectScreenAppModel.AddUser">
+              <MappingFragment StoreEntitySet="AddUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateProject" FunctionName="ProjectScreenAppModel.Store.CreateProject" />
+          <FunctionImportMapping FunctionImportName="CreateUser" FunctionName="ProjectScreenAppModel.Store.CreateUser" />
+          <FunctionImportMapping FunctionImportName="DeleteProject" FunctionName="ProjectScreenAppModel.Store.DeleteProject" />
+          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="ProjectScreenAppModel.Store.DeleteUser" />
+          <FunctionImportMapping FunctionImportName="DisplayAllProjects" FunctionName="ProjectScreenAppModel.Store.DisplayAllProjects">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectScreenAppModel.DisplayAllProjects_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+                <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+                <ScalarProperty Name="ProjectPriority" ColumnName="ProjectPriority" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayAllUsers" FunctionName="ProjectScreenAppModel.Store.DisplayAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectScreenAppModel.DisplayAllUsers_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayById" FunctionName="ProjectScreenAppModel.Store.DisplayById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectScreenAppModel.DisplayById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayProjectByID" FunctionName="ProjectScreenAppModel.Store.DisplayProjectByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectScreenAppModel.DisplayProjectByID_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectStartDate" ColumnName="ProjectStartDate" />
+                <ScalarProperty Name="ProjectEndDate" ColumnName="ProjectEndDate" />
+                <ScalarProperty Name="ProjectPriority" ColumnName="ProjectPriority" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateProject" FunctionName="ProjectScreenAppModel.Store.UpdateProject" />
+          <FunctionImportMapping FunctionImportName="UpdateProject1" FunctionName="ProjectScreenAppModel.Store.UpdateProject1" />
+          <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="ProjectScreenAppModel.Store.UpdateUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

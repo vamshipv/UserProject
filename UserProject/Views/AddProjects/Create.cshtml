@@ -1,0 +1,142 @@
+﻿@model DAL.AddProjects
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "AddProjects", FormMethod.Post, new { @id = "AddProjectCreate", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+<div class="form-horizontal">
+    <h4>AddProject</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProjectStartDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProjectStartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProjectEndDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProjectEndDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" for="customRange3">
+        @Html.LabelFor(model => model.projectPriority, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.projectPriority, new { htmlAttributes = new { @type = "range", @min = "0", @max = "3", @step = "1", @class = "form-control-range", @id = "customRange3" } })
+            @Html.ValidationMessageFor(model => model.projectPriority, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmpId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmpId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add Project" class="btn btn-default" />
+            <input type="reset" value="Reset" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom-validator")
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#AddProjectCreate').validate({
+                errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                errorElement: 'div',
+                errorPlacement: function (error, e) {
+                    e.parents('.form-group > div').append(error);
+                },
+                highlight: function (e) {
+
+                    $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                    $(e).closest('.help-block').remove();
+                },
+                success: function (e) {
+                    e.closest('.form-group').removeClass('has-success has-error');
+                    e.closest('.help-block').remove();
+                },
+                rules: {
+                    'ProjectName': {
+                        required: true
+                    },
+
+                    'ProjectStartDate': {
+                        required: true
+                    },
+
+                    'ProjectEndDate': {
+                        required: true
+                    },
+
+                    'projectPriorityp': {
+                        required: true
+                    },
+
+                    'FirstName': {
+                        required: true
+                    },
+                    'EmpId': {
+                        required: true
+                    }
+
+
+                },
+                messages: {
+                    'ProjectName': {
+                        required: 'Project Name is Required'
+                    },
+
+                    'ProjectStartDate': {
+                        required: 'Project Start Date  is Required'
+                    },
+
+                    'ProjectEndDate': {
+                        required: 'Project Start Date is Required'
+                    },
+                    'projectPriorityp': {
+                        required: 'Project Priority is Required',
+                    },
+                    'FirstName': {
+                        required: 'First Name Id is Required'
+                    },
+                    'EmpId': {
+                        required: 'Emp Id Name Id is Required'
+                    }
+                }
+            });
+        });
+    </script>
+}
