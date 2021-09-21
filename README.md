@@ -6,6 +6,6 @@
 
 > User Interface Layer
 
-> Used Class Library for BLL and DAL
+> Used Class Library for BLL and DAL and DALEntityEF
 
 > CRUD
